@@ -37,12 +37,16 @@ class ViewController: NSViewController {
 
         log.isEditable = false
 
+        DispatchQueue.main.async {
+            self.log.string = "将需要更新至C端的xxx.ttf拖拽进来即可更新。"
+        }
+
         guard let view = view as? DDView else { return }
         Log.default.inout.asObservable()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (log) in
                 guard let _self = self else { return }
-                _self.log.string = (_self.log.string ?? "") + "\n" + log
+                _self.log.string = (_self.log.string ?? "") + "\n\n" + log
                 _self.log.scrollRangeToVisible(NSRange(location: _self.log.string?.characters.count ?? 0, length: 1))
             })
             .addDisposableTo(bag)

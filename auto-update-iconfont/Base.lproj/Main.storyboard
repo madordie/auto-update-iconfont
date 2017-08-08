@@ -112,19 +112,11 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="HOB-0q-4fk">
-                                            <rect key="frame" x="0.0" y="-0.5" width="430" height="278"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="278"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <size key="minSize" width="428" height="278"/>
                                             <size key="maxSize" width="478" height="10000000"/>
-                                            <attributedString key="textStorage">
-                                                <fragment content="将需要更新至C端的xxx.ttf拖拽进来即可更新。">
-                                                    <attributes>
-                                                        <font key="NSFont" size="17" name="PingFangSC-Regular"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
