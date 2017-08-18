@@ -66,3 +66,16 @@ info="{\"msgtype\":\"text\",\"text\":{\"content\":\"${user}向XX仓库提交了�
 curl 'https://oapi.dingtalk.com/robot/send?access_token=TOKEN' -H 'Content-Type: application/json' -d $info
 
 ```
+
+## checkiconfont.py
+
+用作校验 提取iconfont中支持的unicode 以及 代码中支持的unicode 
+
+配置在jenkins 中
+
+```shell
+# check iconfont.ttf
+python /Users/FDD/.jenkins/workspace/lib/checkIconfont.py ./iconfont.ttf .
+```
+
+记得过滤代码中一些特殊含义的unicode,正则可能误伤。。
