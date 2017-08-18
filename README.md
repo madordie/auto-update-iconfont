@@ -75,7 +75,7 @@ curl 'https://oapi.dingtalk.com/robot/send?access_token=TOKEN' -H 'Content-Type:
 
 ```shell
 # check iconfont.ttf
-python /Users/FDD/.jenkins/workspace/lib/checkIconfont.py ./iconfont.ttf .
+python /Users/FDD/.jenkins/workspace/lib/checkIconfont.py $TTF_PATH/iconfont.ttf  $CODE_PATH
 ```
 
 记得过滤代码中一些特殊含义的unicode,正则可能误伤。。
