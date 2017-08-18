@@ -67,7 +67,7 @@ curl 'https://oapi.dingtalk.com/robot/send?access_token=TOKEN' -H 'Content-Type:
 
 ```
 
-## checkiconfont.py
+## [checkiconfont.py](https://github.com/madordie/auto-update-iconfont/blob/master/checkIconfont.py)
 
 用作校验 提取iconfont中支持的unicode 以及 代码中支持的unicode 
 
