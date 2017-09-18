@@ -18,6 +18,7 @@ class Log {
 
 extension Log {
     class func p(_ string: String) {
+        guard string.characters.count > 0 else { return }
         Log.default.inout.value = string
     }
 }

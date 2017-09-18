@@ -15,7 +15,7 @@ struct Item {
     let jenkins: String
 
     func post(_ path: String) -> String {
-        return "curl -u UI:154d6ad914a2fbc6c62c63d721a5f511 -X POST http://10.12.12.10:8080/job/\(jenkins)/build  --form file0=@\(path) --form json='{\"parameter\": [{\"name\":\"\(file)\", \"file\":\"file0\"},{\"name\":\"from\", \"value\":\"\(NSUserName())\"}]}'"
+        return "curl -u UI:71d9848dd7bf4dfd8af9c60892d67913 -X POST http://10.12.12.10:8080/job/\(jenkins)/build  --form file0=@\(path) --form json='{\"parameter\": [{\"name\":\"\(file)\", \"file\":\"file0\"},{\"name\":\"from\", \"value\":\"\(NSUserName())\"}]}'"
     }
 }
 
@@ -79,7 +79,8 @@ class ViewController: NSViewController {
                 for item in list {
                     let info = Command.default.run([item.post(url)])
                     if let status = info.status, status == 0 {
-                        Log.p("\(item.name)已触发上传")
+                        Log.p("\(item.name)项目已触发")
+                        Log.p(info.output)
                     } else {
                         Log.p("\(item.name)触发失败～ \nERROR:\(info.output)")
                     }
