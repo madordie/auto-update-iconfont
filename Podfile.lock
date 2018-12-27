@@ -1,16 +1,21 @@
 PODS:
-  - Alamofire (4.8.0)
+  - SwiftShell (4.1.2)
 
 DEPENDENCIES:
-  - Alamofire
+  - SwiftShell (from `https://github.com/kareman/SwiftShell.git`)
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Alamofire
+EXTERNAL SOURCES:
+  SwiftShell:
+    :git: https://github.com/kareman/SwiftShell.git
+
+CHECKOUT OPTIONS:
+  SwiftShell:
+    :commit: beebe43c986d89ea5359ac3adcb42dac94e5e08a
+    :git: https://github.com/kareman/SwiftShell.git
 
 SPEC CHECKSUMS:
-  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  SwiftShell: d5d2d779b8b704a79ef42c753c1f1afa44e6ffcc
 
-PODFILE CHECKSUM: 1d15d359a9431ccd7515a93803f66e6cc5a7d239
+PODFILE CHECKSUM: 6788ee383122375a35ffe6d47126fefd4933eade
 
 COCOAPODS: 1.6.0.beta.2

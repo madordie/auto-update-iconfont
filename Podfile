@@ -1,6 +1,5 @@
-
-use_frameworks!
+platform :osx, '10.12'
 
 target 'auto-update-iconfont' do
-    pod 'Alamofire'
+  pod 'SwiftShell', :git => 'https://github.com/kareman/SwiftShell.git'
 end

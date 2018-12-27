@@ -19,7 +19,7 @@ class ViewController: NSViewController {
     }
     @IBAction func goIconfont(_ sender: Any) {
         guard let url = URL(string: "https://www.iconfont.cn/manage/index?manage_type=myprojects") else { return }
-        NSWorkspace.shared().open(url)
+        NSWorkspace.shared.open(url)
     }
 }
 

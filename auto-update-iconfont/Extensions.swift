@@ -17,8 +17,7 @@ extension String {
             .compactMap { (line) -> String? in
                 guard let preRange = line.range(of: prefix) else { return nil }
                 guard let sufRange = line.range(of: suffix) else { return nil }
-                return line.substring(with: Range<String.Index>
-                    .init(uncheckedBounds: (preRange.upperBound, sufRange.lowerBound)))
+                return line[preRange.upperBound..<sufRange.lowerBound]
                     .appending(".ttf")
             }
     }

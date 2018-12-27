@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SwiftShell
 
 /// 日志类型
 ///
@@ -32,6 +33,7 @@ struct Jenkins {
     let user = "UI"
     let token = "33ae6ce6091442ff89d5c369a4944eb0"
     let projectURL: (String) -> String = { "http://10.12.12.10:8080/job/\($0)/buildWithParameters" }
+    let developer = "[继刚](https://madordie@github.io)"
 
     static let `default` = Jenkins()
 }
@@ -104,8 +106,8 @@ extension Jenkins {
                 guard code.hasPrefix("@font-face {") && code.hasSuffix("}") else { return p([], .error,  "无法识别 请确认是否正确复制") }
                 let code = code.components(separatedBy: "\n").joined(separator: "\\n")
                     .components(separatedBy: "\t").joined(separator: "\\t")
-                return ["-d",
-                        "from=\"\(NSUserName())\"&code=\"\(code)\""]
+                return ["-d", "from=\"\(NSUserName())\"",
+                        "-d", "code=\"\(code)\""]
             })
         }
     }
@@ -129,9 +131,9 @@ extension Jenkins {
             guard parameter.count > 0 else { return p(false, .error, project.name + "上传参数获取失败") }
             let sh = cmd + " " + parameter
             _ = p(true, .info, "开始触发" + project.name + ": " + parameter)
-            let info = Command.default.run([sh])
-            guard (info.status ?? -1) == 0 else {
-                return p(false, .error, parameter + info.output)
+            let output = run(bash: sh)
+            guard output.succeeded else {
+                return p(false, .error, "触发失败：" + output.stderror)
             }
             return p(true, .ojbk, project.name + " 已成功触发")
         }

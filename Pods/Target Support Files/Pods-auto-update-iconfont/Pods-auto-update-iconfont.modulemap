@@ -1,4 +1,4 @@
-framework module Pods_auto_update_iconfont {
+module Pods_auto_update_iconfont {
   umbrella header "Pods-auto-update-iconfont-umbrella.h"
 
   export *
