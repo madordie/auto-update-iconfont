@@ -31,7 +31,7 @@ protocol Log {
 struct Jenkins {
     let user = "UI"
     let token = "33ae6ce6091442ff89d5c369a4944eb0"
-    let projectURL: (String) -> String = { "http://10.12.12.10:8080/job/\($0)/build" }
+    let projectURL: (String) -> String = { "http://10.12.12.10:8080/job/\($0)/buildWithParameters" }
 
     static let `default` = Jenkins()
 }
@@ -100,7 +100,13 @@ extension Jenkins {
         let name: String
         let path: String
         func cmd(_ code: String, _ log: Log) -> [String] {
-            return []
+            return log.log({ (p) -> [String] in
+                guard code.hasPrefix("@font-face {") && code.hasSuffix("}") else { return p([], .error,  "无法识别 请确认是否正确复制") }
+                let code = code.components(separatedBy: "\n").joined(separator: "\\n")
+                    .components(separatedBy: "\t").joined(separator: "\\t")
+                return ["-d",
+                        "from=\"\(NSUserName())\"&code=\"\(code)\""]
+            })
         }
     }
 }
@@ -133,10 +139,14 @@ extension Jenkins {
 }
 
 let support: [Project] =
-    [Jenkins.TTFProject
-        .init(name: "多多卖房Android",
-              path: "duoduowangshang/job/iconfont-update-android"),
-     Jenkins.TTFProject
-        .init(name: "多多卖房iOS",
-              path: "duoduowangshang/job/iconfont-update-ios"),
+    [
+        Jenkins.CodeProject
+            .init(name: "代码提交测试",
+                  path: "iconfont-test"),
+        Jenkins.TTFProject
+            .init(name: "多多卖房Android",
+                  path: "duoduowangshang/job/iconfont-update-android"),
+        Jenkins.TTFProject
+            .init(name: "多多卖房iOS",
+                  path: "duoduowangshang/job/iconfont-update-ios"),
     ]

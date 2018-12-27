@@ -28,13 +28,16 @@ class PostViewController: NSViewController, Log {
             let log: String
             if ojbk.count == result.count {
                 log = "所有的均成功触发完成。🎉🎉🎉"
+            } else if ojbk.count == 0 {
+                log = result.filter({ !$0.0 }).map({ $0.1 }).joined(separator: "、")
+                    + "，全部触发失败！！请联系：孙继刚协助帮助。"
             } else {
                 log = "只有" + ojbk.map({ $0.1 }).joined(separator: "、")
                     + "成功触发，"
                     + result.filter({ !$0.0 }).map({ $0.1 }).joined(separator: "、")
                     + "触发失败，请联系：孙继刚协助帮助。"
             }
-            return p((), .ojbk, "所有处理完成，" + log)
+            return p((), .ojbk, "所有处理完成:\n\t" + log)
         }
     }
 
