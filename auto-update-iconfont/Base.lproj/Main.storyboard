@@ -234,7 +234,7 @@
                                             <size key="minSize" width="706" height="208"/>
                                             <size key="maxSize" width="706" height="10000000"/>
                                             <attributedString key="textStorage">
-                                                <fragment content="开始处理">
+                                                <fragment content="开始识别并处理">
                                                     <attributes>
                                                         <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <font key="NSFont" size="14" name="PingFangTC-Regular"/>
