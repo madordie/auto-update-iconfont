@@ -28,11 +28,11 @@ protocol Log {
     func log<T>(_ exe: ((T, LogType, String) -> T) -> T) -> T;
 }
 
-/// Jenkins配置
+/// Jenkins配置 https://wiki.jenkins.io/display/JENKINS/Remote+access+API
 struct Jenkins {
     let user = "UI"
     let token = "33ae6ce6091442ff89d5c369a4944eb0"
-    let projectURL: (String) -> String = { "http://10.12.12.10:8080/job/\($0)/buildWithParameters" }
+    let projectURL: (String) -> String = { "http://10.12.12.10:8080/job/\($0)/build" }
     let developer = "[继刚](https://madordie@github.io)"
 
     static let `default` = Jenkins()
@@ -118,8 +118,8 @@ extension Jenkins {
         func cmd(_ code: Code, _ log: Log) -> [String] {
             return log.log({ (p) -> [String] in
                 guard let url = code.url(log: log, prefix: "", suffix: .css) else { return p([], .error,  "无法识别 请确认是否正确复制") }
-                return ["-d", "from=\"\(NSUserName())\"",
-                        "-d", "css=\"\(url)\""]
+                return ["--data-urlencode",
+                        "json='{\"parameter\": [{\"name\":\"from\", \"value\":\"\(NSUserName())\"}, {\"name\":\"css\", \"value\":\"\(url)\"}]}'"]
             })
         }
     }
@@ -136,8 +136,8 @@ extension Jenkins {
     func post(code: String, project: Project, log: Log) -> Bool {
         return log.log { (p) -> Bool in
             let cmd = ["curl",
-                       "-u \(user):\(token)",
-                       "-X POST \(projectURL(project.path))"]
+                       "-X POST \(projectURL(project.path))",
+                       "--user \(user):\(token)"]
                 .joined(separator: " ")
             let parameter = project.cmd(code, log).joined(separator: " ")
             guard parameter.count > 0 else { return p(false, .error, project.name + "上传参数获取失败") }
@@ -157,10 +157,10 @@ let support: [Project] =
         Jenkins.CSSProject
             .init(name: "房商铺",
                   path: "iconfont/job/fangshangpu-website"),
-        Jenkins.TTFProject
-            .init(name: "多多卖房Android",
-                  path: "duoduowangshang/job/iconfont-update-android"),
-        Jenkins.TTFProject
-            .init(name: "多多卖房iOS",
-                  path: "duoduowangshang/job/iconfont-update-ios"),
+//        Jenkins.TTFProject
+//            .init(name: "多多卖房Android",
+//                  path: "duoduowangshang/job/iconfont-update-android"),
+//        Jenkins.TTFProject
+//            .init(name: "多多卖房iOS",
+//                  path: "duoduowangshang/job/iconfont-update-ios"),
     ]
