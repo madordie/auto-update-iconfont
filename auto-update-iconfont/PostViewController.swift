@@ -30,6 +30,8 @@ class PostViewController: NSViewController {
 
     @IBOutlet var log: NSTextView!
 
+    var callback: (() -> Void)?
+
     var code = ""
     var projects = [Project]()
 
@@ -38,10 +40,10 @@ class PostViewController: NSViewController {
         log.isEditable = false
     }
 
-    override func viewWillAppear() {
-        super.viewWillAppear()
+    override func viewDidAppear() {
+        super.viewDidAppear()
         do {
-            let result = try support
+            let result = try projects
                 .map({ (try Jenkins.default.post(code: code, project: $0), $0.name) })
             let ojbk = result.filter({ $0.0 })
             var log: String
@@ -70,8 +72,10 @@ class PostViewController: NSViewController {
 
     @IBAction func cancel(_ sender: Any) {
         dismiss(sender)
+        callback?()
     }
     @IBAction func done(_ sender: Any) {
+        callback?()
         exit(0)
     }
 }

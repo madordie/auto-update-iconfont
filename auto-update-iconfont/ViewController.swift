@@ -15,7 +15,8 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tips.stringValue = "该项目目前仅支持：" + support.map({ $0.name }).joined(separator: "、")
+        tips.stringValue = "该项目目前仅支持："
+            + "\n\t↳" + support.map({ $0.name }).joined(separator: "、")
             + "\n\t↳如需支持其他项目请联系\(Jenkins.default.developer)"
     }
     @IBAction func goIconfont(_ sender: Any) {

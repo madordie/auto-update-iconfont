@@ -53,14 +53,22 @@ let support: [Project] =
     [
         Jenkins.CSSProject
             .init(fontId: "984807",
-                  name: "房商铺",
+                  name: "[web]房商铺",
                   path: "iconfont/job/fangshangpu-website"),
         Jenkins.TTFProject
             .init(fontId: "635235",
-                  name: "多多卖房Android",
-                  path: "duoduowangshang/job/iconfont-update-android"),
+                  name: "[Android]多多卖房",
+                  path: "iconfont/job/agent-store-app-android"),
         Jenkins.TTFProject
             .init(fontId: "635235",
-                  name: "多多卖房iOS",
-                  path: "duoduowangshang/job/iconfont-update-ios"),
+                  name: "[iOS]多多卖房",
+                  path: "iconfont/job/agent-store-app-ios"),
+        Jenkins.TTFProject
+            .init(fontId: "358738",
+                  name: "[Android]房多多",
+                  path: "iconfont/job/fdd-app-android"),
+        Jenkins.TTFProject
+            .init(fontId: "358738",
+                  name: "[iOS]房多多",
+                  path: "iconfont/job/fdd-app-ios"),
     ]

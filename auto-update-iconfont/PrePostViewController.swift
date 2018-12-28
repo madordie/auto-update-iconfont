@@ -40,6 +40,7 @@ class PrePostViewController: NSViewController {
     @IBAction func next(_ sender: Any) {
         guard let post = postVC else { return }
         presentAsSheet(post)
+        post.callback = { [weak self] in self?.dismiss(nil) }
     }
     
     func prepare() throws {
