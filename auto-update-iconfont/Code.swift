@@ -62,7 +62,7 @@ enum FileType: String {
 }
 
 extension Code {
-    static let regularURL = "//at.alicdn.com/t/font_\\d+_[\\d\\w]+."
+    static let regularURL: (Project) -> String = { "//at.alicdn.com/t/font_\($0.fontId)_[\\d\\w]+." }
     static let regularProjectId = "font-family: 'iconfont';  /\\* project id (\\d+) \\*/"
 
     /// 从剪切板获取Code
@@ -105,9 +105,9 @@ extension Code {
     ///   - suffix: URL后缀
     /// - Returns: 全部的URL，会根据type做简单的校验
     /// - Throws: 炸了
-    func url(prefix: String = "https:", suffix: FileType = .ttf) throws -> String {
+    func url(project: Project, prefix: String = "https:", suffix: FileType = .ttf) throws -> String {
         let code = self
-        let expression = try NSRegularExpression(pattern: Code.regularURL, options: .caseInsensitive)
+        let expression = try NSRegularExpression(pattern: Code.regularURL(project), options: .caseInsensitive)
         let strings = expression
             .matches(in: code, options: [], range: NSRange(location: 0, length: code.count))
             .compactMap({ (result) -> String? in

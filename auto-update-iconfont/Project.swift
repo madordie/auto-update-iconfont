@@ -73,7 +73,7 @@ extension Jenkins {
             if let localPath = TTFProject.ttfLocalpath {
                 return localPath
             }
-            let ttf = try code.url()
+            let ttf = try code.url(project: self)
             guard let url = URL(string: ttf) else { throw URLError.create(ttf) }
             let data = try Data(contentsOf: url, options: [])
             let locationPath = try data.save(ttf: url)
@@ -110,9 +110,23 @@ extension Jenkins {
         let name: String
         let path: String
         func cmd(_ code: Code) throws -> [String] {
-            let url = try code.url(prefix: "", suffix: .css)
+            let url = try code.url(project: self, prefix: "", suffix: .css)
             return ["--data-urlencode",
-                    "json='{\"parameter\": [{\"name\":\"from\", \"value\":\"\(NSUserName())\"}, {\"name\":\"css\", \"value\":\"\(url)\"}]}'"]
+                    Jenkins.mk(json: ["from": NSUserName(),
+                                      "css": url,
+                                      "project_id": fontId])]
         }
+    }
+}
+
+extension Jenkins {
+    static func mk(json: [String: String], prefix: String = "json='", suffix: String = "'") -> String {
+        return prefix
+            + "{\"parameter\": ["
+            + json
+                .map({ "{\"name\":\"\($0.key)\", \"value\":\"\($0.value)\"}" })
+                .joined(separator: ", ")
+            + "]}"
+            + suffix
     }
 }
