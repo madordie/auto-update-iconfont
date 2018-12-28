@@ -9,23 +9,42 @@
 import AppKit
 import Cocoa
 
-class PostViewController: NSViewController, Log {
+enum IBError: Error {
+    case instantiate(NSStoryboard.SceneIdentifier)
+}
+extension IBError: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .instantiate(let id):
+            return "崩溃了。。。"
+                + "\n\t↳\(id)无法初始化"
+        }
+    }
+}
+
+extension NSStoryboard.SceneIdentifier {
+    static let postViewController = "ib-post-view-controller"
+}
+
+class PostViewController: NSViewController {
 
     @IBOutlet var log: NSTextView!
+
+    var code = ""
+    var projects = [Project]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         log.isEditable = false
     }
 
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        log { (p) -> Void in
-            guard let code = NSPasteboard.general.string(forType: .string) else { return p((), .error,  "剪切板无数据呀。。") }
-            let result = support
-                .map({ (Jenkins.default.post(code: code, project: $0, log: self), $0.name) })
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        do {
+            let result = try support
+                .map({ (try Jenkins.default.post(code: code, project: $0), $0.name) })
             let ojbk = result.filter({ $0.0 })
-            let log: String
+            var log: String
             let errorAtMe = { "\n\n\t先看一下上面的日志，如果无法不能理解或无法解决\n\t请 **携带此日志** 联系：\(Jenkins.default.developer)协助帮助。" }
             if ojbk.count == result.count {
                 log = "所有的均成功触发完成 🎉🎉🎉"
@@ -38,17 +57,15 @@ class PostViewController: NSViewController, Log {
                     + "\(result.filter({ !$0.0 }).map({ $0.1 }).joined(separator: "、"))触发失败!!"
                     + errorAtMe()
             }
-            return p((), .ojbk, "所有处理完成:\n\t" + log)
+            self.log(log)
+        } catch {
+            log("\(error)")
         }
     }
 
-    func log<T>(_ exe: ((T, LogType, String) -> T) -> T) -> T {
-        func printLog(value: T, _ type: LogType, _ txt: String) -> T {
-            log.string = log.string.appending("\n") + type.rawValue + txt + "\n"
-            log.scrollRangeToVisible(NSRange(location: log.string.count, length: 1))
-            return value
-        }
-        return exe(printLog)
+    func log(_ error: Any) {
+        log.string = log.string.appending("\n\(error)")
+        log.scrollRangeToVisible(NSRange(location: log.string.count, length: 1))
     }
 
     @IBAction func cancel(_ sender: Any) {
