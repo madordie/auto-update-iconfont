@@ -56,7 +56,7 @@ let support: [Project] =
                   name: "[web]在线商服",
                   path: "iconfont/job/commercia-web-ap-fdd"),
         Jenkins.CSSProject
-            .init(fontId: "984807",
+            .init(fontId: "416564",
                   name: "[web]房商铺",
                   path: "iconfont/job/fangshangpu-website"),
         Jenkins.TTFProject
