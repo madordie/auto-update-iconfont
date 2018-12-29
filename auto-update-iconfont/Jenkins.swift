@@ -13,7 +13,7 @@ struct Jenkins {
     let user = "UI"
     let token = "33ae6ce6091442ff89d5c369a4944eb0"
     let projectURL: (String) -> String = { "http://10.12.12.10:8080/job/\($0)/build" }
-    let developer = "[继刚](https://madordie@github.io)"
+    let developer = "[继刚](钉钉:sunjigang)"
     static let `default` = Jenkins()
 }
 
