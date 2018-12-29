@@ -17,7 +17,7 @@ extension IBError: CustomStringConvertible {
         switch self {
         case .instantiate(let id):
             return "崩溃了。。。"
-                + "\n\t↳\(id)无法初始化"
+                + "\n\t↳ \(id)无法初始化"
         }
     }
 }

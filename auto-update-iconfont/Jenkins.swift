@@ -25,7 +25,7 @@ extension JenkinsError: CustomStringConvertible {
         switch self {
         case .emptyParameter(let name, let code):
             return name + "上传参数生成失败"
-                + "\n\t↳\(code)"
+                + "\n\t↳ \(code)"
         }
     }
 }

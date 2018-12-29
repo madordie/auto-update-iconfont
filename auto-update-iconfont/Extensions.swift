@@ -23,3 +23,11 @@ extension Data {
         return path
     }
 }
+
+extension NSMutableAttributedString {
+    func append(list: [NSAttributedString]) {
+        for item in list {
+            append(item)
+        }
+    }
+}

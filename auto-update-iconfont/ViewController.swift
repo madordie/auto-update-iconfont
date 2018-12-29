@@ -8,6 +8,10 @@
 
 import Cocoa
 
+extension NSColor.Name {
+    static let tipsColor = "tips_color"
+}
+
 class ViewController: NSViewController {
 
     @IBOutlet weak var tips: NSTextField!
@@ -15,13 +19,27 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tips.stringValue = "该项目目前仅支持："
-            + "\n\t↳" + support.map({ $0.name }).joined(separator: "、")
-            + "\n\t↳如需支持其他项目请联系\(Jenkins.default.developer)"
-    }
-    @IBAction func goIconfont(_ sender: Any) {
-        guard let url = URL(string: "https://www.iconfont.cn/manage/index?manage_type=myprojects") else { return }
-        NSWorkspace.shared.open(url)
+        tips.attributedStringValue = {
+            let attr = NSMutableAttributedString()
+            attr.append(NSAttributedString(string: "该项目目前仅支持：\n\t↳ "))
+
+            var list = support
+                .flatMap({ (project) -> [NSAttributedString] in
+                    guard let url = try? Jenkins.projectURL(project) else { return [] }
+                    return [NSAttributedString.init(string: project.name, attributes: [.link: url]),
+                            NSAttributedString(string: "、")]
+                })
+            list.removeLast()
+            attr.append(list: list)
+            attr.append(NSAttributedString(string: "\n\t↳ 如需支持其他项目请联系\(Jenkins.default.developer)"))
+
+            attr.addAttributes([.font: NSFont.systemFont(ofSize: 20),
+                                .foregroundColor: NSColor(named: .tipsColor) ?? NSColor.gray],
+                               range: NSRange(location: 0, length: attr.string.count))
+            return attr
+        }()
+        tips.allowsEditingTextAttributes = true
+        tips.isSelectable = true
     }
 }
 

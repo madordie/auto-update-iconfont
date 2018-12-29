@@ -16,8 +16,8 @@ extension ProjectError: CustomStringConvertible {
         switch self {
         case .empty(let id):
             return "没有可以更新的项目。"
-                + "\n\t↳请确认您所复制代码的项目(\(id))是否支持，"
-                + "\n\t↳如果需要支持请联系\(Jenkins.default.developer)"
+                + "\n\t↳ 请确认您所复制代码的项目(\(id))是否支持，"
+                + "\n\t↳ 如果需要支持请联系\(Jenkins.default.developer)"
         }
     }
 }
@@ -40,7 +40,7 @@ extension DataError: CustomStringConvertible{
     var description: String {
         switch self {
         case .empty(let url):
-            return "无数据\n\t↳" + url
+            return "无数据\n\t↳ " + url
         }
     }
 }
@@ -52,7 +52,7 @@ extension CSSError: CustomStringConvertible{
     var description: String {
         switch self {
         case .format(let url):
-            return "CSS解析失败\n\t↳" + url
+            return "CSS解析失败\n\t↳ " + url
         }
     }
 }
@@ -120,6 +120,11 @@ extension Jenkins {
 }
 
 extension Jenkins {
+    static func projectURL(_ project: Project) throws -> NSURL {
+        let str = "https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=\(project.fontId)"
+        guard let url = NSURL(string: str) else { throw URLError.create(str) }
+        return url
+    }
     static func mk(json: [String: String], prefix: String = "json='", suffix: String = "'") -> String {
         return prefix
             + "{\"parameter\": ["

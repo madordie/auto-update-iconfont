@@ -15,7 +15,7 @@ extension URLError: CustomStringConvertible {
     var description: String {
         switch self {
         case .create(let url):
-            return "无法创建URL\n\t↳" + url
+            return "无法创建URL\n\t↳ " + url
         }
     }
 }

@@ -49,7 +49,7 @@ class PrePostViewController: NSViewController {
         let supportList = support.filter({ $0.fontId == project })
         guard supportList.count > 0 else { throw ProjectError.empty(project) }
         next.isHidden = false
-        tips.stringValue = "您确定要更新以下项目么？\n\t↳"
+        tips.stringValue = "您确定要更新以下项目么？\n\t↳ "
             + supportList.map({ $0.name }).joined(separator: "、")
         guard let postVC = postVC else { throw IBError.instantiate(.postViewController) }
         postVC.code = code
