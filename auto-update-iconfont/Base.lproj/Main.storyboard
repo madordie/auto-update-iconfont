@@ -105,7 +105,7 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="auto_update_iconfont" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="kBc-RH-vml">
-                        <rect key="frame" x="0.0" y="0.0" width="840" height="459"/>
+                        <rect key="frame" x="0.0" y="0.0" width="840" height="610"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kaf-Ts-fvc">
@@ -114,7 +114,7 @@
                                     <constraint firstAttribute="height" constant="40" id="6ub-Wm-WET"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="WBg-Lo-UlB"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" title="点我粘贴并识别所更新的项目" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="olR-6s-Lik">
+                                <buttonCell key="cell" type="square" title="点我粘贴" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="olR-6s-Lik">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -123,15 +123,15 @@
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hWq-lC-frf">
-                                <rect key="frame" x="20" y="135" width="800" height="261"/>
+                                <rect key="frame" x="20" y="135" width="800" height="412"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="hWq-lC-frf" secondAttribute="height" multiplier="1200:391" id="GNO-AM-vFu"/>
+                                    <constraint firstAttribute="width" secondItem="hWq-lC-frf" secondAttribute="height" multiplier="1180:607" id="GNO-AM-vFu"/>
                                     <constraint firstAttribute="width" constant="800" id="eVV-I8-L9k"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="boot-1" id="QKm-mV-aCz"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aiU-KT-F0f">
-                                <rect key="frame" x="18" y="417" width="266" height="20"/>
+                                <rect key="frame" x="18" y="568" width="266" height="20"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="不知道复制什么？看一哈这个图片：" id="aXV-zz-oFb">
                                     <font key="font" size="16" name=".PingFangSC-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -329,6 +329,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="boot-1" width="1200" height="391"/>
+        <image name="boot-1" width="1180" height="607"/>
     </resources>
 </document>

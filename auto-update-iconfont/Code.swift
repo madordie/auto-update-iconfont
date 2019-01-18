@@ -114,8 +114,8 @@ extension Code {
                 guard let range = Range<String.Index>(result.range, in: code) else { return nil }
                 return String(code[range])
             })
-        // 此处正常就5个数据，要不就GG给你看
-        guard strings.count == 5 else { throw CodeError.format }
+        // 此处正常就6个数据，要不就GG给你看
+        guard strings.count == 6 else { throw CodeError.format }
         var onlyOne = Set(strings)
         // 5个数据去掉后缀之后就是一个，如果不对就GG
         guard onlyOne.count == 1 else { throw CodeError.format }
