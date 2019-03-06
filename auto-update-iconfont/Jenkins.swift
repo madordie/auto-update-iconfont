@@ -52,6 +52,10 @@ extension Jenkins {
 let support: [Project] =
     [
         Jenkins.CSSProject
+            .init(fontId: "984807",
+                  name: "[小程序]旗舰店",
+                  path: "iconfont/job/vip-mini-program"),
+        Jenkins.CSSProject
             .init(fontId: "693420",
                   name: "[web]在线商服",
                   path: "iconfont/job/commercia-web-ap-fdd"),
