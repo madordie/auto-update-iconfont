@@ -1,1 +1,1 @@
-/Users/Madordie/Desktop/Madordie/GitHub/auto-update-iconfont/Pods/Target Support Files/SwiftShell/SwiftShell-umbrella.h
+../../../Target Support Files/SwiftShell/SwiftShell-umbrella.h

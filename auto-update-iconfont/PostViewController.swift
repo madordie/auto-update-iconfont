@@ -8,6 +8,7 @@
 
 import AppKit
 import Cocoa
+import SwiftShell
 
 enum IBError: Error {
     case instantiate(NSStoryboard.SceneIdentifier)
@@ -42,32 +43,37 @@ class PostViewController: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        do {
-            let result = try projects
-                .map({ (try Jenkins.default.post(code: code, project: $0), $0.name) })
-            let ojbk = result.filter({ $0.0 })
-            var log: String
-            let errorAtMe = { "\n\n\t先看一下上面的日志，如果无法不能理解或无法解决\n\t请 **携带此日志** 联系：\(Jenkins.default.developer)协助帮助。" }
-            if ojbk.count == result.count {
-                log = "所有的均成功触发完成 🎉🎉🎉"
-            } else if ojbk.count == 0 {
-                log = result.filter({ !$0.0 }).map({ $0.1 }).joined(separator: "、")
-                    + "，全部触发失败！！"
-                    + errorAtMe()
-            } else {
-                log = "只有\(ojbk.map({ $0.1 }).joined(separator: "、"))成功触发，"
-                    + "\(result.filter({ !$0.0 }).map({ $0.1 }).joined(separator: "、"))触发失败!!"
-                    + errorAtMe()
-            }
-            self.log(log)
-        } catch {
-            log("\(error)")
+
+        DispatchQueue.global().async {
+            do {
+                let result = try self.projects
+                    .map({ (try Jenkins.default.post(code: self.code, project: $0), $0.name) })
+                let ojbk = result.filter({ $0.0 })
+                var log: String
+                let errorAtMe = { "\n\n\t先看一下上面的日志，如果无法不能理解或无法解决\n\t请 **携带此日志** 联系：\(Jenkins.default.developer)协助帮助。" }
+                if ojbk.count == result.count {
+                    log = "所有的均成功触发完成 🎉🎉🎉"
+                } else if ojbk.count == 0 {
+                    log = result.filter({ !$0.0 }).map({ $0.1 }).joined(separator: "、")
+                        + "，全部触发失败！！"
+                        + errorAtMe()
+                } else {
+                    log = "只有\(ojbk.map({ $0.1 }).joined(separator: "、"))成功触发，"
+                        + "\(result.filter({ !$0.0 }).map({ $0.1 }).joined(separator: "、"))触发失败!!"
+                        + errorAtMe()
+                }
+                self.log(log)
+            } catch { self.log("\(error)") }
         }
     }
 
     func log(_ error: Any) {
-        log.string = log.string.appending("\n\(error)")
-        log.scrollRangeToVisible(NSRange(location: log.string.count, length: 1))
+        let commit: () -> Void = {
+            self.log.string = self.log.string.appending("\n\(error)")
+            self.log.scrollRangeToVisible(NSRange(location: self.log.string.count, length: 1))
+        }
+        if Thread.isMainThread { commit() }
+        else { DispatchQueue.main.async(execute: commit) }
     }
 
     @IBAction func cancel(_ sender: Any) {

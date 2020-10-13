@@ -21,7 +21,7 @@ class ViewController: NSViewController {
 
         tips.attributedStringValue = {
             let attr = NSMutableAttributedString()
-            attr.append(NSAttributedString(string: "该项目目前仅支持：\n\t↳ "))
+            attr.append(NSAttributedString(string: "# 该项目目前仅支持：\n\t↳ "))
 
             var list = support
                 .flatMap({ (project) -> [NSAttributedString] in
@@ -33,7 +33,7 @@ class ViewController: NSViewController {
             attr.append(list: list)
             attr.append(NSAttributedString(string: "\n\t↳ 如需支持其他项目请联系\(Jenkins.default.developer)"))
 
-            attr.addAttributes([.font: NSFont.systemFont(ofSize: 20),
+            attr.addAttributes([.font: NSFont.systemFont(ofSize: 15),
                                 .foregroundColor: NSColor(named: .tipsColor) ?? NSColor.gray],
                                range: NSRange(location: 0, length: attr.string.count))
             return attr

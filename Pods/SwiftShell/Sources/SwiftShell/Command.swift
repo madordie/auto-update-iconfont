@@ -1,35 +1,39 @@
 /*
-* Released under the MIT License (MIT), http://opensource.org/licenses/MIT
-*
-* Copyright (c) 2015 Kåre Morstøl, NotTooBad Software (nottoobadsoftware.com)
-*
-*/
+ * Released under the MIT License (MIT), http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2015 Kåre Morstøl, NotTooBad Software (nottoobadsoftware.com)
+ *
+ */
 
-#if !(os(iOS) || os(tvOS) || os(watchOS))
-
-import Foundation
 import Dispatch
+import Foundation
 
 // MARK: exit
 
 /**
-Prints message to standard error and terminates the application.
+ Prints message to standard error and terminates the application.
 
-- parameter errormessage: the error message.
-- parameter errorcode: exit code for the entire program. Defaults to 1.
-- returns: Never.
-*/
-public func exit <T>(errormessage: T, errorcode: Int = 1, file: String = #file, line: Int = #line) -> Never  {
+ In debug builds it precedes the message with filename and line number.
+
+ - parameter errormessage: the error message.
+ - parameter errorcode: exit code for the entire program. Defaults to 1.
+ - returns: Never.
+ */
+public func exit<T>(errormessage: T, errorcode: Int = 1, file: String = #file, line: Int = #line) -> Never {
+	#if DEBUG
 	main.stderror.print(file + ":\(line):", errormessage)
+	#else
+	main.stderror.print(errormessage)
+	#endif
 	exit(Int32(errorcode))
 }
 
 /**
-Prints error to standard error and terminates the application.
+ Prints error to standard error and terminates the application.
 
-- parameter error: the error
-- returns: Never.
-*/
+ - parameter error: the error
+ - returns: Never.
+ */
 public func exit(_ error: Error, file: String = #file, line: Int = #line) -> Never {
 	if let commanderror = error as? CommandError {
 		exit(errormessage: commanderror, errorcode: commanderror.errorcode, file: file, line: line)
@@ -46,17 +50,15 @@ public protocol CommandRunning {
 }
 
 extension CommandRunning where Self: Context {
-	public var context: Context { return self }
+	public var context: Context { self }
 }
 
 extension CommandRunning {
-
 	func createProcess(_ executable: String, args: [String]) -> Process {
-
 		/**
-		If `executable` is not a path and a path for an executable file of that name can be found, return that path.
-		Otherwise just return `executable`.
-		*/
+		 If `executable` is not a path and a path for an executable file of that name can be found, return that path.
+		 Otherwise just return `executable`.
+		 */
 		func path(for executable: String) -> String {
 			guard !executable.contains("/") else {
 				return executable
@@ -67,10 +69,18 @@ extension CommandRunning {
 
 		let process = Process()
 		process.arguments = args
-		process.launchPath = path(for: executable)
+		if #available(OSX 10.13, *) {
+			process.executableURL = URL(fileURLWithPath: path(for: executable))
+		} else {
+			process.launchPath = path(for: executable)
+		}
 
 		process.environment = context.env
-		process.currentDirectoryPath = context.currentdirectory
+		if #available(OSX 10.13, *) {
+			process.currentDirectoryURL = URL(fileURLWithPath: context.currentdirectory, isDirectory: true)
+		} else {
+			process.currentDirectoryPath = context.currentdirectory
+		}
 
 		process.standardInput = context.stdin.filehandle
 		process.standardOutput = context.stdout.filehandle
@@ -83,8 +93,7 @@ extension CommandRunning {
 // MARK: CommandError
 
 /** Error type for commands. */
-public enum CommandError: Error {
-
+public enum CommandError: Error, Equatable {
 	/** Exit code was not zero. */
 	case returnedErrorCode(command: String, errorcode: Int)
 
@@ -94,7 +103,7 @@ public enum CommandError: Error {
 	/** Exit code for this error. */
 	public var errorcode: Int {
 		switch self {
-		case .returnedErrorCode(_, let code):
+		case let .returnedErrorCode(_, code):
 			return code
 		case .inAccessibleExecutable:
 			return 127 // according to http://tldp.org/LDP/abs/html/exitcodes.html
@@ -105,23 +114,10 @@ public enum CommandError: Error {
 extension CommandError: CustomStringConvertible {
 	public var description: String {
 		switch self {
-		case .inAccessibleExecutable(let path):
+		case let .inAccessibleExecutable(path):
 			return "Could not execute file at path '\(path)'."
-		case .returnedErrorCode(let command, let code):
+		case let .returnedErrorCode(command, code):
 			return "Command '\(command)' returned with error code \(code)."
-		}
-	}
-}
-
-extension CommandError: Equatable {
-	static public func == (e1: CommandError, e2: CommandError) -> Bool {
-		switch (e1, e2) {
-		case (.returnedErrorCode(let c1), .returnedErrorCode(let c2)):
-			return c1.errorcode == c2.errorcode && c1.command == c2.command
-		case (.inAccessibleExecutable(let c1), .inAccessibleExecutable(let c2)):
-			return c1 == c2
-		case (.inAccessibleExecutable, .returnedErrorCode), (.returnedErrorCode, .inAccessibleExecutable):
-			return false
 		}
 	}
 }
@@ -130,7 +126,7 @@ extension CommandError: Equatable {
 
 /// Output from a `run` command.
 public final class RunOutput {
-	fileprivate let output: AsyncCommand
+	private let output: AsyncCommand
 	private let rawStdout: Data
 	private let rawStderror: Data
 
@@ -160,7 +156,7 @@ public final class RunOutput {
 			try command.finish()
 		} catch let commandError as CommandError {
 			error = commandError
-		} catch let error {
+		} catch {
 			assertionFailure("Unexpected error: \(error)")
 		}
 
@@ -173,8 +169,8 @@ public final class RunOutput {
 	}
 
 	/// If text is single-line, trim it.
-	static private func cleanUpOutput(_ text: String) -> String {
-		let afterfirstnewline = text.index(of: "\n").map(text.index(after:))
+	private static func cleanUpOutput(_ text: String) -> String {
+		let afterfirstnewline = text.firstIndex(of: "\n").map(text.index(after:))
 		return (afterfirstnewline == nil || afterfirstnewline == text.endIndex)
 			? text.trimmingCharacters(in: .whitespacesAndNewlines)
 			: text
@@ -197,10 +193,10 @@ public final class RunOutput {
 	}()
 
 	/// The exit code of the command. Anything but 0 means there was an error.
-	public var exitcode: Int { return output.exitcode() }
+	public var exitcode: Int { output.exitcode() }
 
 	/// Checks if the exit code is 0.
-	public var succeeded: Bool { return exitcode == 0 }
+	public var succeeded: Bool { exitcode == 0 }
 
 	/// Runs the first command, then the second one only if the first succeeded.
 	///
@@ -264,7 +260,7 @@ public class PrintedAsyncCommand {
 	}
 
 	/// Is the command still running?
-	public var isRunning: Bool { return process.isRunning }
+	public var isRunning: Bool { process.isRunning }
 
 	/// Terminates the command by sending the SIGTERM signal.
 	public func stop() {
@@ -277,32 +273,32 @@ public class PrintedAsyncCommand {
 	}
 
 	/**
-	Temporarily suspends a command. Call resume() to resume a suspended command.
+	 Temporarily suspends a command. Call resume() to resume a suspended command.
 
-	- warning: You may suspend a command multiple times, but it must be resumed an equal number of times before the command will truly be resumed.
-	- returns: `true` iff the command was successfully suspended.
-	*/
+	 - warning: You may suspend a command multiple times, but it must be resumed an equal number of times before the command will truly be resumed.
+	 - returns: `true` iff the command was successfully suspended.
+	 */
 	@discardableResult public func suspend() -> Bool {
-		return process.suspend()
+		process.suspend()
 	}
 
 	/**
-	Resumes a command previously suspended with suspend().
+	 Resumes a command previously suspended with suspend().
 
-	- warning: If the command has been suspended multiple times then it will have to be resumed the same number of times before execution will truly be resumed.
-	- returns: true if the command was successfully resumed.
-	*/
+	 - warning: If the command has been suspended multiple times then it will have to be resumed the same number of times before execution will truly be resumed.
+	 - returns: true if the command was successfully resumed.
+	 */
 	@discardableResult public func resume() -> Bool {
-		return process.resume()
+		process.resume()
 	}
 
 	/**
-	Waits for this command to finish.
+	 Waits for this command to finish.
 
-	- warning: Hangs if the unread output of either standard output or standard error is larger than 64KB ([#52](https://github.com/kareman/SwiftShell/issues/52)). To work around this problem, read all the output first, even if you're not going to use it.
-	- returns: self
-	- throws:  `CommandError.returnedErrorCode(command: String, errorcode: Int)` if the exit code is anything but 0.
-	*/
+	 - warning: Hangs if the unread output of either standard output or standard error is larger than 64KB ([#52](https://github.com/kareman/SwiftShell/issues/52)). To work around this problem, read all the output first, even if you're not going to use it.
+	 - returns: self
+	 - throws:  `CommandError.returnedErrorCode(command: String, errorcode: Int)` if the exit code is anything but 0.
+	 */
 	@discardableResult public func finish() throws -> Self {
 		try process.finish()
 		return self
@@ -315,10 +311,10 @@ public class PrintedAsyncCommand {
 	}
 
 	/**
-	Waits for the command to finish, then returns why the command terminated.
+	 Waits for the command to finish, then returns why the command terminated.
 
-	- returns: `.exited` if the command exited normally, otherwise `.uncaughtSignal`.
-	*/
+	 - returns: `.exited` if the command exited normally, otherwise `.uncaughtSignal`.
+	 */
 	public func terminationReason() -> Process.TerminationReason {
 		process.waitUntilExit()
 		return process.terminationReason
@@ -371,25 +367,25 @@ public final class AsyncCommand: PrintedAsyncCommand {
 
 extension CommandRunning {
 	/**
-	Runs executable and returns before it is finished.
+	 Runs executable and returns before it is finished.
 
-	- warning:              Application will be terminated if ‘executable’ could not be launched.
-	- parameter executable: Path to an executable file. If not then exit.
-	- parameter args:       Arguments to the executable.
-	*/
+	 - warning:              Application will be terminated if ‘executable’ could not be launched.
+	 - parameter executable: Path to an executable file. If not then exit.
+	 - parameter args:       Arguments to the executable.
+	 */
 	public func runAsync(_ executable: String, _ args: Any ..., file: String = #file, line: Int = #line) -> AsyncCommand {
 		let stringargs = args.flatten().map(String.init(describing:))
 		return AsyncCommand(launch: createProcess(executable, args: stringargs), file: file, line: line)
 	}
 
 	/**
-	Runs executable and returns before it is finished.
-	Any output is printed to standard output and standard error, respectively.
+	 Runs executable and returns before it is finished.
+	 Any output is printed to standard output and standard error, respectively.
 
-	- warning:              Application will be terminated if ‘executable’ could not be launched.
-	- parameter executable: Path to an executable file. If not then exit.
-	- parameter args:       Arguments to the executable.
-	*/
+	 - warning:              Application will be terminated if ‘executable’ could not be launched.
+	 - parameter executable: Path to an executable file. If not then exit.
+	 - parameter args:       Arguments to the executable.
+	 */
 	public func runAsyncAndPrint(_ executable: String, _ args: Any ..., file: String = #file, line: Int = #line) -> PrintedAsyncCommand {
 		let stringargs = args.flatten().map(String.init(describing:))
 		return PrintedAsyncCommand(launch: createProcess(executable, args: stringargs), file: file, line: line)
@@ -399,17 +395,16 @@ extension CommandRunning {
 // MARK: runAndPrint
 
 extension CommandRunning {
-
 	/**
-	Runs executable and prints output and errors.
+	 Runs executable and prints output and errors.
 
-	- parameter executable: path to an executable file.
-	- parameter args:       arguments to the executable.
-	- throws:
-		`CommandError.returnedErrorCode(command: String, errorcode: Int)` if the exit code is anything but 0.
+	 - parameter executable: path to an executable file.
+	 - parameter args:       arguments to the executable.
+	 - throws:
+	 `CommandError.returnedErrorCode(command: String, errorcode: Int)` if the exit code is anything but 0.
 
-		`CommandError.inAccessibleExecutable(path: String)` if 'executable’ turned out to be not so executable after all.
-	*/
+	 `CommandError.inAccessibleExecutable(path: String)` if 'executable’ turned out to be not so executable after all.
+	 */
 	public func runAndPrint(_ executable: String, _ args: Any ...) throws {
 		let stringargs = args.flatten().map(String.init(describing:))
 		let process = createProcess(executable, args: stringargs)
@@ -427,7 +422,7 @@ extension CommandRunning {
 /// - parameter args: the arguments, one string for each.
 /// - parameter combineOutput: if true then stdout and stderror go to the same stream. Default is false.
 @discardableResult public func run(_ executable: String, _ args: Any ..., combineOutput: Bool = false) -> RunOutput {
-	return main.run(executable, args, combineOutput: combineOutput)
+	main.run(executable, args, combineOutput: combineOutput)
 }
 
 @available(*, unavailable, message: "Use `run(...).stdout` instead.")
@@ -436,39 +431,37 @@ extension CommandRunning {
 }
 
 /**
-Runs executable and returns before it is finished.
+ Runs executable and returns before it is finished.
 
-- warning:              Application will be terminated if ‘executable’ could not be launched.
-- parameter executable: Path to an executable file. If not then exit.
-- parameter args:       Arguments to the executable.
-*/
+ - warning:              Application will be terminated if ‘executable’ could not be launched.
+ - parameter executable: Path to an executable file. If not then exit.
+ - parameter args:       Arguments to the executable.
+ */
 public func runAsync(_ executable: String, _ args: Any ..., file: String = #file, line: Int = #line) -> AsyncCommand {
-	return main.runAsync(executable, args, file: file, line: line)
+	main.runAsync(executable, args, file: file, line: line)
 }
 
 /**
-Runs executable and returns before it is finished.
-Any output is printed to standard output and standard error, respectively.
+ Runs executable and returns before it is finished.
+ Any output is printed to standard output and standard error, respectively.
 
-- warning:              Application will be terminated if ‘executable’ could not be launched.
-- parameter executable: Path to an executable file. If not then exit.
-- parameter args:       Arguments to the executable.
-*/
+ - warning:              Application will be terminated if ‘executable’ could not be launched.
+ - parameter executable: Path to an executable file. If not then exit.
+ - parameter args:       Arguments to the executable.
+ */
 public func runAsyncAndPrint(_ executable: String, _ args: Any ..., file: String = #file, line: Int = #line) -> PrintedAsyncCommand {
-	return main.runAsyncAndPrint(executable, args, file: file, line: line)
+	main.runAsyncAndPrint(executable, args, file: file, line: line)
 }
 
 /**
-Runs executable and prints output and errors.
+ Runs executable and prints output and errors.
 
-- parameter executable: path to an executable file.
-- parameter args: arguments to the executable.
-- throws: `CommandError.returnedErrorCode(command: String, errorcode: Int)` if the exit code is anything but 0.
+ - parameter executable: path to an executable file.
+ - parameter args: arguments to the executable.
+ - throws: `CommandError.returnedErrorCode(command: String, errorcode: Int)` if the exit code is anything but 0.
 
-	`CommandError.inAccessibleExecutable(path: String)` if 'executable’ turned out to be not so executable after all.
-*/
+ `CommandError.inAccessibleExecutable(path: String)` if 'executable’ turned out to be not so executable after all.
+ */
 public func runAndPrint(_ executable: String, _ args: Any ...) throws {
-	return try main.runAndPrint(executable, args)
+	try main.runAndPrint(executable, args)
 }
-
-#endif

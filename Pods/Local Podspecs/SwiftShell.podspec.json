@@ -1,6 +1,6 @@
 {
   "name": "SwiftShell",
-  "version": "4.1.2",
+  "version": "5.1.0",
   "summary": "A Swift framework for shell scripting.",
   "description": "SwiftShell is a library for creating command-line applications and running shell commands in Swift.",
   "homepage": "https://github.com/kareman/SwiftShell",
@@ -13,14 +13,13 @@
   },
   "source": {
     "git": "https://github.com/kareman/SwiftShell.git",
-    "tag": "4.1.2"
+    "tag": "5.1.0"
   },
   "source_files": [
     "Sources/SwiftShell/*.swift",
     "Sources/SwiftShell/*/*.swift"
   ],
   "platforms": {
-    "osx": "10.10",
-    "ios": "9.0"
+    "osx": "10.11"
   }
 }

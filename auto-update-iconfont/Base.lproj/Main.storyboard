@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -105,11 +105,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="auto_update_iconfont" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="kBc-RH-vml">
-                        <rect key="frame" x="0.0" y="0.0" width="840" height="610"/>
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="631"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kaf-Ts-fvc">
-                                <rect key="frame" x="622" y="18" width="200" height="40"/>
+                                <rect key="frame" x="422" y="18" width="200" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="6ub-Wm-WET"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="WBg-Lo-UlB"/>
@@ -123,25 +123,25 @@
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hWq-lC-frf">
-                                <rect key="frame" x="20" y="135" width="800" height="412"/>
+                                <rect key="frame" x="20" y="136" width="600" height="433"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="hWq-lC-frf" secondAttribute="height" multiplier="1180:607" id="GNO-AM-vFu"/>
-                                    <constraint firstAttribute="width" constant="800" id="eVV-I8-L9k"/>
+                                    <constraint firstAttribute="width" secondItem="hWq-lC-frf" secondAttribute="height" multiplier="1040:751" id="GNO-AM-vFu"/>
+                                    <constraint firstAttribute="width" constant="600" id="eVV-I8-L9k"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="boot-1" id="QKm-mV-aCz"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aiU-KT-F0f">
-                                <rect key="frame" x="18" y="568" width="266" height="20"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="不知道复制什么？看一哈这个图片：" id="aXV-zz-oFb">
-                                    <font key="font" size="16" name=".PingFangSC-Regular"/>
+                                <rect key="frame" x="18" y="590" width="247" height="19"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="# 首次使用请认真阅读该使用说明" id="aXV-zz-oFb">
+                                    <font key="font" metaFont="system" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0hE-Wg-EfQ">
-                                <rect key="frame" x="18" y="97" width="804" height="18"/>
+                                <rect key="frame" x="18" y="97" width="604" height="19"/>
                                 <textFieldCell key="cell" lineBreakMode="charWrapping" sendsActionOnEndEditing="YES" alignment="left" title="该项目仅支持：" id="oni-H5-Tes">
-                                    <font key="font" size="17" name=".PingFangSC-Regular"/>
+                                    <font key="font" metaFont="system" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -176,19 +176,19 @@
             <objects>
                 <viewController id="1X6-fw-IBM" customClass="PrePostViewController" customModule="auto_update_iconfont" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="9D2-FY-4oj">
-                        <rect key="frame" x="0.0" y="0.0" width="746" height="120"/>
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="119"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qlT-Mt-iFK">
-                                <rect key="frame" x="18" y="80" width="119" height="20"/>
+                                <rect key="frame" x="18" y="80" width="119" height="19"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="您确定要更新么" id="fsf-SB-JLC">
-                                    <font key="font" size="16" name=".PingFangSC-Regular"/>
+                                    <font key="font" metaFont="system" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jsk-Ta-OER">
-                                <rect key="frame" x="646" y="20" width="80" height="30"/>
+                                <rect key="frame" x="540" y="20" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="MMt-a2-CXP"/>
                                     <constraint firstAttribute="height" constant="30" id="yVd-wD-FQ7"/>
@@ -202,7 +202,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uv1-fT-5q9">
-                                <rect key="frame" x="536" y="20" width="80" height="30"/>
+                                <rect key="frame" x="430" y="20" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="scX-lj-5gB"/>
                                 </constraints>
@@ -243,11 +243,11 @@
             <objects>
                 <viewController storyboardIdentifier="ib-post-view-controller" id="Zpl-b7-de4" customClass="PostViewController" customModule="auto_update_iconfont" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Lun-A4-r7f">
-                        <rect key="frame" x="0.0" y="0.0" width="746" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dDj-Tw-MSz">
-                                <rect key="frame" x="620" y="20" width="106" height="32"/>
+                                <rect key="frame" x="514" y="20" width="106" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="LMr-J6-puP"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="106" id="Und-kp-2m6"/>
@@ -268,24 +268,24 @@
                                 </constraints>
                                 <buttonCell key="cell" type="square" title="取消" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lsc-4B-JV1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="16" name=".PingFangSC-Regular"/>
+                                    <font key="font" metaFont="system" size="16"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="cancel:" target="Zpl-b7-de4" id="j95-wg-YLW"/>
                                 </connections>
                             </button>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0k-AF-06r">
-                                <rect key="frame" x="20" y="72" width="706" height="208"/>
+                                <rect key="frame" x="20" y="72" width="600" height="208"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="rgu-oT-DEI">
-                                    <rect key="frame" x="0.0" y="0.0" width="706" height="208"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="208"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="TfM-Ts-wjH">
-                                            <rect key="frame" x="0.0" y="0.0" width="706" height="208"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="208"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="706" height="208"/>
+                                            <size key="minSize" width="600" height="208"/>
                                             <size key="maxSize" width="706" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment content="处理中...">
@@ -300,8 +300,12 @@
                                         </textView>
                                     </subviews>
                                 </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="y4h-0J-QsB">
+                                    <rect key="frame" x="-100" y="-100" width="600" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="mra-E8-SoJ">
-                                    <rect key="frame" x="690" y="0.0" width="16" height="208"/>
+                                    <rect key="frame" x="584" y="0.0" width="16" height="208"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -329,6 +333,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="boot-1" width="1180" height="607"/>
+        <image name="boot-1" width="1040" height="751"/>
     </resources>
 </document>

@@ -1,5 +1,5 @@
 PODS:
-  - SwiftShell (4.1.2)
+  - SwiftShell (5.1.0)
 
 DEPENDENCIES:
   - SwiftShell (from `https://github.com/kareman/SwiftShell.git`)
@@ -10,12 +10,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftShell:
-    :commit: beebe43c986d89ea5359ac3adcb42dac94e5e08a
+    :commit: 99680b2efc7c7dbcace1da0b3979d266f02e213c
     :git: https://github.com/kareman/SwiftShell.git
 
 SPEC CHECKSUMS:
-  SwiftShell: d5d2d779b8b704a79ef42c753c1f1afa44e6ffcc
+  SwiftShell: 0c2c6f2fcfc210e84a7b06390581923e2aab2ec7
 
-PODFILE CHECKSUM: 6788ee383122375a35ffe6d47126fefd4933eade
+PODFILE CHECKSUM: 8296ce4b546d6d228c24725ad3bfc125298314e8
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.9.3
