@@ -41,30 +41,42 @@ String Parameter:
 事先已经将项目clone到了指定目录下。
 剩下就是几个shell命令，自己看下就能看懂。
 ```shell
-new_iconfont=./../iconfont.ttf
-# 最新iconfont所需要放置的位置(一般和自己项目有关系)
-old_iconfont=Fangduoduo/Fangduoduo/Fonts/iconfont.ttf
+# 任务名字
+JOB_NAME="iOS项目"
+# path
+GIT_PATH="ios-app"
+# 原来的iconfont地址
+OLD_FONT="Resources/Fonts"
+# 提交分支
+BRANCH="develop"
+# 谁可以review
+REVIEWERS="${IOS_REVIEWERS}"
 
-user=$from
-if [ -z "$user" ]; then 
-    user=$BUILD_USER
-fi
+# 钉钉机器人token 如需添加换行并列即可
+cat << EOF > dtalk.tokens
+41xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx96
+EOF
 
-cd fdd-app-ios
-git checkout master
-git branch -D develop
-git checkout develop
-git fetch 
-git rebase
-mv $new_iconfont $old_iconfont
-git add $old_iconfont
-git commit -m "${user} update iconfont.ttf"
-git push
+#############################
+#							#
+#     从这里往下就别修改了	 #
+#							#
+#############################
 
-# 钉钉群通知相关开发合并。（此处使用的是gerrit，所以必须手动合并。TOKEN为机器人TOKEN
-info="{\"msgtype\":\"text\",\"text\":{\"content\":\"${user}向XX仓库提交了新的iconfont.ttf。传送门(需有合并权限):http://teamcode.fangdd.net/#/dashboard/self\"}}"
-curl 'https://oapi.dingtalk.com/robot/send?access_token=TOKEN' -H 'Content-Type: application/json' -d $info
+# 标签
+NEW_FONT="iconfont.ttf"
+# 项目
+JOB="$JOB_NAME($NODE_NAME)"
 
+bash "${HOME}/cmd/push-iconfont-ttf.sh" \
+	-j "$JOB_NAME" \
+    -n "$NEW_FONT" \
+    -o "$OLD_FONT" \
+    -b "$BRANCH" \
+    -p "$GIT_PATH" \
+    -f "$from" \
+    -r "$REVIEWERS" \
+    -d dtalk.tokens
 ```
 
 ## [checkiconfont.py](https://github.com/madordie/auto-update-iconfont/blob/master/checkIconfont.py)
