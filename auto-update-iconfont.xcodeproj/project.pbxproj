@@ -1,0 +1,392 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11418BF775CAFF5CBE0F292C /* libPods-auto-update-iconfont.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD64E651EBF2C44DFDDC678B /* libPods-auto-update-iconfont.a */; };
+		32533A1C21D36AE0004537C0 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32533A1B21D36AE0004537C0 /* PostViewController.swift */; };
+		32533A1E21D36C8D004537C0 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32533A1D21D36C8D004537C0 /* Project.swift */; };
+		3277E9A11F1F598B00410ADD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3277E9A01F1F598B00410ADD /* AppDelegate.swift */; };
+		3277E9A31F1F598B00410ADD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3277E9A21F1F598B00410ADD /* ViewController.swift */; };
+		3277E9A51F1F598B00410ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3277E9A41F1F598B00410ADD /* Assets.xcassets */; };
+		3277E9A81F1F598B00410ADD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3277E9A61F1F598B00410ADD /* Main.storyboard */; };
+		329DC25921D49DC300DBF6E2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC25821D49DC300DBF6E2 /* Extensions.swift */; };
+		329DC25B21D4F1C300DBF6E2 /* Code.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC25A21D4F1C300DBF6E2 /* Code.swift */; };
+		329DC25D21D5BDDE00DBF6E2 /* Jenkins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC25C21D5BDDE00DBF6E2 /* Jenkins.swift */; };
+		329DC25F21D5C2FE00DBF6E2 /* PrePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC25E21D5C2FE00DBF6E2 /* PrePostViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		32533A1B21D36AE0004537C0 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		32533A1D21D36C8D004537C0 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		3277E99D1F1F598B00410ADD /* auto-update-iconfont.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "auto-update-iconfont.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3277E9A01F1F598B00410ADD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3277E9A21F1F598B00410ADD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3277E9A41F1F598B00410ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3277E9A71F1F598B00410ADD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3277E9A91F1F598B00410ADD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		329DC25821D49DC300DBF6E2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		329DC25A21D4F1C300DBF6E2 /* Code.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Code.swift; sourceTree = "<group>"; };
+		329DC25C21D5BDDE00DBF6E2 /* Jenkins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jenkins.swift; sourceTree = "<group>"; };
+		329DC25E21D5C2FE00DBF6E2 /* PrePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrePostViewController.swift; sourceTree = "<group>"; };
+		3CF6A0DC074F4263A2A1AB63 /* Pods-auto-update-iconfont.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-auto-update-iconfont.debug.xcconfig"; path = "Pods/Target Support Files/Pods-auto-update-iconfont/Pods-auto-update-iconfont.debug.xcconfig"; sourceTree = "<group>"; };
+		A95D29B795C867A7F6F1F2E2 /* Pods-auto-update-iconfont.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-auto-update-iconfont.release.xcconfig"; path = "Pods/Target Support Files/Pods-auto-update-iconfont/Pods-auto-update-iconfont.release.xcconfig"; sourceTree = "<group>"; };
+		CD64E651EBF2C44DFDDC678B /* libPods-auto-update-iconfont.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-auto-update-iconfont.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3277E99A1F1F598B00410ADD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11418BF775CAFF5CBE0F292C /* libPods-auto-update-iconfont.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3277E9941F1F598B00410ADD = {
+			isa = PBXGroup;
+			children = (
+				3277E99F1F1F598B00410ADD /* auto-update-iconfont */,
+				3277E99E1F1F598B00410ADD /* Products */,
+				A229CBF7F44C6F14EFDF4A8B /* Pods */,
+				62630B940139B64D0EC0EA79 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3277E99E1F1F598B00410ADD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3277E99D1F1F598B00410ADD /* auto-update-iconfont.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3277E99F1F1F598B00410ADD /* auto-update-iconfont */ = {
+			isa = PBXGroup;
+			children = (
+				3277E9A01F1F598B00410ADD /* AppDelegate.swift */,
+				3277E9A21F1F598B00410ADD /* ViewController.swift */,
+				329DC25E21D5C2FE00DBF6E2 /* PrePostViewController.swift */,
+				32533A1B21D36AE0004537C0 /* PostViewController.swift */,
+				329DC25821D49DC300DBF6E2 /* Extensions.swift */,
+				329DC25A21D4F1C300DBF6E2 /* Code.swift */,
+				3277E9A41F1F598B00410ADD /* Assets.xcassets */,
+				3277E9A61F1F598B00410ADD /* Main.storyboard */,
+				3277E9A91F1F598B00410ADD /* Info.plist */,
+				32533A1D21D36C8D004537C0 /* Project.swift */,
+				329DC25C21D5BDDE00DBF6E2 /* Jenkins.swift */,
+			);
+			path = "auto-update-iconfont";
+			sourceTree = "<group>";
+		};
+		62630B940139B64D0EC0EA79 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD64E651EBF2C44DFDDC678B /* libPods-auto-update-iconfont.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A229CBF7F44C6F14EFDF4A8B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3CF6A0DC074F4263A2A1AB63 /* Pods-auto-update-iconfont.debug.xcconfig */,
+				A95D29B795C867A7F6F1F2E2 /* Pods-auto-update-iconfont.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3277E99C1F1F598B00410ADD /* auto-update-iconfont */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3277E9AC1F1F598B00410ADD /* Build configuration list for PBXNativeTarget "auto-update-iconfont" */;
+			buildPhases = (
+				C8BCD4B79194B94A6F0B2550 /* [CP] Check Pods Manifest.lock */,
+				3277E9991F1F598B00410ADD /* Sources */,
+				3277E99A1F1F598B00410ADD /* Frameworks */,
+				3277E99B1F1F598B00410ADD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "auto-update-iconfont";
+			productName = "auto-update-iconfont";
+			productReference = 3277E99D1F1F598B00410ADD /* auto-update-iconfont.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3277E9951F1F598B00410ADD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = madordie;
+				TargetAttributes = {
+					3277E99C1F1F598B00410ADD = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = JW6AL86C37;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3277E9981F1F598B00410ADD /* Build configuration list for PBXProject "auto-update-iconfont" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+			);
+			mainGroup = 3277E9941F1F598B00410ADD;
+			productRefGroup = 3277E99E1F1F598B00410ADD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3277E99C1F1F598B00410ADD /* auto-update-iconfont */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3277E99B1F1F598B00410ADD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3277E9A51F1F598B00410ADD /* Assets.xcassets in Resources */,
+				3277E9A81F1F598B00410ADD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C8BCD4B79194B94A6F0B2550 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-auto-update-iconfont-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3277E9991F1F598B00410ADD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				329DC25D21D5BDDE00DBF6E2 /* Jenkins.swift in Sources */,
+				3277E9A31F1F598B00410ADD /* ViewController.swift in Sources */,
+				329DC25F21D5C2FE00DBF6E2 /* PrePostViewController.swift in Sources */,
+				329DC25921D49DC300DBF6E2 /* Extensions.swift in Sources */,
+				3277E9A11F1F598B00410ADD /* AppDelegate.swift in Sources */,
+				32533A1C21D36AE0004537C0 /* PostViewController.swift in Sources */,
+				329DC25B21D4F1C300DBF6E2 /* Code.swift in Sources */,
+				32533A1E21D36C8D004537C0 /* Project.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3277E9A61F1F598B00410ADD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3277E9A71F1F598B00410ADD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3277E9AA1F1F598B00410ADD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3277E9AB1F1F598B00410ADD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		3277E9AD1F1F598B00410ADD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CF6A0DC074F4263A2A1AB63 /* Pods-auto-update-iconfont.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = JW6AL86C37;
+				INFOPLIST_FILE = "auto-update-iconfont/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 2.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.madordie.auto-update-iconfont";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		3277E9AE1F1F598B00410ADD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A95D29B795C867A7F6F1F2E2 /* Pods-auto-update-iconfont.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = JW6AL86C37;
+				INFOPLIST_FILE = "auto-update-iconfont/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 2.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.madordie.auto-update-iconfont";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3277E9981F1F598B00410ADD /* Build configuration list for PBXProject "auto-update-iconfont" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3277E9AA1F1F598B00410ADD /* Debug */,
+				3277E9AB1F1F598B00410ADD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3277E9AC1F1F598B00410ADD /* Build configuration list for PBXNativeTarget "auto-update-iconfont" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3277E9AD1F1F598B00410ADD /* Debug */,
+				3277E9AE1F1F598B00410ADD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3277E9951F1F598B00410ADD /* Project object */;
+}

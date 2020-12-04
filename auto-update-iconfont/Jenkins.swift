@@ -12,7 +12,7 @@ import SwiftShell
 struct Jenkins {
     let user = "UI"
     let token = "33ae6ce6091442ff89d5c369a4944eb0"
-    let projectURL: (String) -> String = { "https://xxx/job/\($0)/build" }
+    let projectURL: (String) -> String = { "https://ci-sz.fangdd.net/job/\($0)/build" }
     let developer = "[继刚](钉钉:sunjigang)"
     static let `default` = Jenkins()
 }
